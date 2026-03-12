@@ -27,10 +27,9 @@ function setupEventListeners() {
     // Chat functionality
     sendButton.addEventListener('click', sendMessage);
     chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
+      if (e.key === 'Enter') sendMessage();
     });
-    
-    
+
     // New chat button
     newChatButton.addEventListener('click', handleNewChat);
 
@@ -43,7 +42,6 @@ function setupEventListeners() {
         });
     });
 }
-
 
 // Chat Functions
 async function sendMessage() {
