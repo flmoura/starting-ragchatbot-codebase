@@ -64,7 +64,7 @@ async def query_documents(request: QueryRequest):
         
         # Process query using RAG system
         answer, sources = rag_system.query(request.query, session_id)
-        
+
         return QueryResponse(
             answer=answer,
             sources=sources,
@@ -72,6 +72,12 @@ async def query_documents(request: QueryRequest):
         )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.delete("/api/session/{session_id}")
+async def delete_session(session_id: str):
+    """Clear and remove a session from memory"""
+    rag_system.session_manager.clear_session(session_id)
+    return {"status": "ok"}
 
 @app.get("/api/courses", response_model=CourseStats)
 async def get_course_stats():
